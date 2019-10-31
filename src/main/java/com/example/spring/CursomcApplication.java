@@ -14,6 +14,7 @@ import com.example.spring.domain.Cidade;
 import com.example.spring.domain.Cliente;
 import com.example.spring.domain.Endereco;
 import com.example.spring.domain.Estado;
+import com.example.spring.domain.ItemPedido;
 import com.example.spring.domain.Pagamento;
 import com.example.spring.domain.PagamentoComBoleto;
 import com.example.spring.domain.PagamentoComCartao;
@@ -26,6 +27,7 @@ import com.example.spring.repository.CidadeRepository;
 import com.example.spring.repository.ClienteRepository;
 import com.example.spring.repository.EnderecoRepository;
 import com.example.spring.repository.EstadoRepository;
+import com.example.spring.repository.ItemPedidoRepository;
 import com.example.spring.repository.PagamentoRepository;
 import com.example.spring.repository.PedidoRepository;
 import com.example.spring.repository.ProdutoRepository;
@@ -49,6 +51,11 @@ public class CursomcApplication implements CommandLineRunner {
 	private PedidoRepository pedidoRepository;
 	@Autowired
 	private PagamentoRepository pagamentoRepository;
+	@Autowired
+	private ItemPedidoRepository itemPedidoRepository;
+	
+	
+	
 	
 	public static void main(String[] args) {
 		SpringApplication.run(CursomcApplication.class, args);
@@ -113,6 +120,20 @@ public class CursomcApplication implements CommandLineRunner {
 	    
 	    pedidoRepository.saveAll(Arrays.asList(ped1, ped2));
 	    pagamentoRepository.saveAll(Arrays.asList(pagato1, pagato2));
+	    
+	    ItemPedido itemP1 = new ItemPedido(ped1, p1, 0.00, 1, 2000.00);
+	    ItemPedido itemP2 = new ItemPedido(ped1, p3, 0.00, 2, 80.00);
+	    ItemPedido itemP3 = new ItemPedido(ped2, p2, 100.00, 1, 800.00);
+	    
+	    ped1.getItens().addAll(Arrays.asList(itemP1, itemP2));
+	    ped2.getItens().addAll(Arrays.asList(itemP3));
+	    
+	    p1.getItens().addAll(Arrays.asList(itemP1));
+	    p2.getItens().addAll(Arrays.asList(itemP2));
+	    p2.getItens().addAll(Arrays.asList(itemP3));
+	    
+	    itemPedidoRepository.saveAll(Arrays.asList(itemP1, itemP2, itemP3));
+	    
 	    
 	}
 

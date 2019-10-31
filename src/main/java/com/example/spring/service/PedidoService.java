@@ -6,25 +6,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.spring.domain.Categoria;
+import com.example.spring.domain.Pedido;
 import com.example.spring.repository.CategoriaRepository;
+import com.example.spring.repository.PedidoRepository;
 
 import javassist.tools.rmi.ObjectNotFoundException;
 
 @Service
-public class CategoriaService {
-
-	@Autowired
-	private CategoriaRepository repo;
-
-	public Categoria buscar(Integer id) throws ObjectNotFoundException {
-		Optional<Categoria> obj = repo.findById(id);
-		return obj.orElseThrow(() -> new ObjectNotFoundException(
-				"Objeto nao encontrado! Id: " + id + ", Tipo: " + Categoria.class.getName()));
-
-	}
+public class PedidoService {
 	
-	public Categoria insert(Categoria obj) {
-		obj.setId(null);
-		return repo.save(obj);
-	}
+	@Autowired
+	private PedidoRepository repo;
+	
+	public Pedido buscar(Integer id) throws ObjectNotFoundException {
+		Optional<Pedido> obj = repo.findById(id);
+		return obj.orElseThrow(() -> new ObjectNotFoundException(
+				"Objeto nao encontrado! Id: " + id + ", Tipo: " + Pedido.class.getName()));
+
+}
 }

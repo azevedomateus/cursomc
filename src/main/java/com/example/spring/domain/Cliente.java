@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.example.spring.domain.enums.TipoCliente;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity 
 public class Cliente implements Serializable{
@@ -26,11 +26,10 @@ public class Cliente implements Serializable{
 	private String cpfCnpj;
 	private Integer tipoCliente;
 	
-	@JsonManagedReference
 	@OneToMany(mappedBy = "cliente")
 	List<Endereco> enderecos = new ArrayList<Endereco>();
 	
-	//@JsonManagedReference
+	@JsonIgnore
 	@OneToMany(mappedBy = "cliente")
 	private List<Pedido> pedidos = new ArrayList<>();
 	
