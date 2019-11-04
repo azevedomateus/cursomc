@@ -10,16 +10,26 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+<<<<<<< HEAD
 @Entity
 public class Categoria implements Serializable {
 
+=======
+@Entity 
+public class Categoria implements Serializable{
+	
+>>>>>>> e5fc68fcdc5c48b567b705008fdd1138107d0508
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> e5fc68fcdc5c48b567b705008fdd1138107d0508
 	@ManyToMany(mappedBy = "categorias")
 	private List<Produto> produtos = new ArrayList<>();
 
