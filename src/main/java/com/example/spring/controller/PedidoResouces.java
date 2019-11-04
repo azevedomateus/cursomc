@@ -8,22 +8,22 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.spring.domain.Categoria;
-import com.example.spring.domain.Cliente;
+import com.example.spring.domain.Pedido;
 import com.example.spring.service.CategoriaService;
-import com.example.spring.service.ClienteService;
+import com.example.spring.service.PedidoService;
 
 import javassist.tools.rmi.ObjectNotFoundException;
 
 @RestController
-@RequestMapping(value ="/clientes")
-public class ClienteResouces {
+@RequestMapping(value ="/pedidos")
+public class PedidoResouces {
 	
 	@Autowired
-	private ClienteService service;
+	private PedidoService service;
 
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<Cliente> find(@PathVariable Integer id) throws ObjectNotFoundException {
-		Cliente obj = service.find(id);
+	public ResponseEntity<Pedido> find(@PathVariable Integer id) throws ObjectNotFoundException {
+		Pedido obj = service.find(id);
 		return ResponseEntity.ok().body(obj);
 		
 

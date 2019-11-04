@@ -22,8 +22,8 @@ public class ProdutoResouces {
 	private ProdutoService service;
 
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<?> find(@PathVariable Integer id) throws ObjectNotFoundException {
-		Produto obj = service.buscar(id);
+	public ResponseEntity<Produto> find(@PathVariable Integer id) throws ObjectNotFoundException {
+		Produto obj = service.find(id);
 		return ResponseEntity.ok().body(obj);
 	}
 
