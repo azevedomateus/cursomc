@@ -1,13 +1,10 @@
 package com.example.spring.controller;
 
 import java.net.URI;
-<<<<<<< HEAD
 import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.validation.Valid;
-=======
->>>>>>> e5fc68fcdc5c48b567b705008fdd1138107d0508
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -32,19 +29,13 @@ public class CategoriaResouces {
 	private CategoriaService service;
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-<<<<<<< HEAD
 	public ResponseEntity<Categoria> find(@PathVariable Integer id) throws ObjectNotFoundException {
 		Categoria obj = service.find(id);
-=======
-	public ResponseEntity<?> find(@PathVariable Integer id) throws ObjectNotFoundException {
-		Categoria obj = service.buscar(id);
->>>>>>> e5fc68fcdc5c48b567b705008fdd1138107d0508
 		return ResponseEntity.ok().body(obj);
 
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-<<<<<<< HEAD
 	public ResponseEntity<Object> insert(@Valid @RequestBody CategoriaDTO objDto) {
 		Categoria obj = service.fromDTO(objDto);
 		obj = service.insert(obj);
@@ -79,12 +70,4 @@ public class CategoriaResouces {
 	}
 	
 
-=======
-	public ResponseEntity<Object> insert(@RequestBody Categoria obj){
-		obj = service.insert(obj);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-				.path("/{id}").buildAndExpand(obj.getId()).toUri();
-		return ResponseEntity.created(uri).build();
-	}
->>>>>>> e5fc68fcdc5c48b567b705008fdd1138107d0508
 }

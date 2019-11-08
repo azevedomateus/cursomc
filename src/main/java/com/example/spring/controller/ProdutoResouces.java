@@ -7,9 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.spring.domain.Categoria;
 import com.example.spring.domain.Produto;
-import com.example.spring.service.CategoriaService;
 import com.example.spring.service.ProdutoService;
 
 import javassist.tools.rmi.ObjectNotFoundException;
