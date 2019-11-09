@@ -7,22 +7,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.spring.domain.Produto;
-import com.example.spring.service.ProdutoService;
+import com.example.spring.domain.Pedido;
+import com.example.spring.service.PedidoService;
 
 import javassist.tools.rmi.ObjectNotFoundException;
 
 @RestController
-@RequestMapping(value ="/produtos")
-public class ProdutoResouces {
-	
+@RequestMapping(value = "/pedidos")
+public class PedidoResouces {
+
 	@Autowired
-	private ProdutoService service;
+	private PedidoService service;
 
-	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<Produto> find(@PathVariable Integer id) throws ObjectNotFoundException {
-		Produto obj = service.find(id);
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+
+	public ResponseEntity<Pedido> find(@PathVariable Integer id) throws ObjectNotFoundException {
+		Pedido obj = service.find(id);
 		return ResponseEntity.ok().body(obj);
-	}
 
+	}
 }

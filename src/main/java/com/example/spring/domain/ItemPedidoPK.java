@@ -2,6 +2,7 @@ package com.example.spring.domain;
 
 import java.io.Serializable;
 
+<<<<<<< HEAD
 public class ItemPedidoPK implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
@@ -12,6 +13,30 @@ public class ItemPedidoPK implements Serializable{
 	}
 	public void setPedido(Pedido pedido) {
 		this.pedido = pedido;
+=======
+import javax.persistence.Embeddable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+@Embeddable
+public class ItemPedidoPK implements Serializable{
+
+	private static final long serialVersionUID = 1L;
+	
+	@ManyToOne
+	@JoinColumn(name="pedido_id")
+	private Pedido pedido;
+	
+	@ManyToOne
+	@JoinColumn(name="produto_id")
+	private Produto produto;
+	
+	public Pedido getPedido() {
+		return pedido;
+	}
+	public void setPedido(Pedido pedidoo) {
+		this.pedido = pedidoo;
+>>>>>>> refs/remotes/origem/master
 	}
 	public Produto getProduto() {
 		return produto;
@@ -48,7 +73,11 @@ public class ItemPedidoPK implements Serializable{
 			return false;
 		return true;
 	}
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> refs/remotes/origem/master
 	
 
 }
