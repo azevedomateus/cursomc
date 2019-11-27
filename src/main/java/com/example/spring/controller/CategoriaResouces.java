@@ -71,6 +71,7 @@ public class CategoriaResouces {
 
 	}
 
+<<<<<<< HEAD
 	@RequestMapping(value = "/page", method = RequestMethod.GET)
 	public ResponseEntity<Page<CategoriaDTO>> findPage(@RequestParam(value = "page", defaultValue = "0") Integer page,
 			@RequestParam(value = "linesPage", defaultValue = "24") Integer linesPage,
@@ -82,4 +83,6 @@ public class CategoriaResouces {
 
 	}
 
+=======
+>>>>>>> 6a765844bd1065876367a61b72132a9fafa53ff9
 }

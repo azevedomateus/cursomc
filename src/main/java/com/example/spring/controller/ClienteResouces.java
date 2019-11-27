@@ -32,7 +32,10 @@ public class ClienteResouces {
 			return ResponseEntity.ok().body(obj);
 		}
 		
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6a765844bd1065876367a61b72132a9fafa53ff9
 	/*
 	 * @RequestMapping(method = RequestMethod.POST) public ResponseEntity<Object>
 	 * insert(@Valid @RequestBody ClienteDTO objDto) { Cliente obj =
@@ -42,7 +45,11 @@ public class ClienteResouces {
 	 * 
 	 * }
 	 */
+<<<<<<< HEAD
 			@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+=======
+		@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+>>>>>>> 6a765844bd1065876367a61b72132a9fafa53ff9
 		public ResponseEntity<Object> update(@Valid @RequestBody ClienteDTO objDto, @PathVariable Integer id)
 				throws ObjectNotFoundException {
 			Cliente obj = service.fromDTO(objDto);

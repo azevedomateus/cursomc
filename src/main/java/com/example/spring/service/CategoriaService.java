@@ -58,11 +58,14 @@ public class CategoriaService {
 	public Categoria fromDTO(CategoriaDTO objDto) {
 		return new Categoria(objDto.getId(), objDto.getNome());
 
+<<<<<<< HEAD
 	}
 	
 	public Page<Categoria> findPage(Integer page, Integer linesPage, String ordeBy, String direction){
 		PageRequest pageRequest = new PageRequest(page, linesPage,Direction.valueOf(direction), ordeBy);
 		return repo.findAll(pageRequest);
+=======
+>>>>>>> 6a765844bd1065876367a61b72132a9fafa53ff9
 	}
 
 }
