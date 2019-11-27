@@ -1,20 +1,19 @@
 package com.example.spring.controller;
 
 import java.net.URI;
-<<<<<<< HEAD
 import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.validation.Valid;
-=======
->>>>>>> e5fc68fcdc5c48b567b705008fdd1138107d0508
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -32,19 +31,13 @@ public class CategoriaResouces {
 	private CategoriaService service;
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-<<<<<<< HEAD
 	public ResponseEntity<Categoria> find(@PathVariable Integer id) throws ObjectNotFoundException {
 		Categoria obj = service.find(id);
-=======
-	public ResponseEntity<?> find(@PathVariable Integer id) throws ObjectNotFoundException {
-		Categoria obj = service.buscar(id);
->>>>>>> e5fc68fcdc5c48b567b705008fdd1138107d0508
 		return ResponseEntity.ok().body(obj);
 
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-<<<<<<< HEAD
 	public ResponseEntity<Object> insert(@Valid @RequestBody CategoriaDTO objDto) {
 		Categoria obj = service.fromDTO(objDto);
 		obj = service.insert(obj);
@@ -77,14 +70,16 @@ public class CategoriaResouces {
 		return ResponseEntity.ok().body(listDto);
 
 	}
-	
 
-=======
-	public ResponseEntity<Object> insert(@RequestBody Categoria obj){
-		obj = service.insert(obj);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-				.path("/{id}").buildAndExpand(obj.getId()).toUri();
-		return ResponseEntity.created(uri).build();
+	@RequestMapping(value = "/page", method = RequestMethod.GET)
+	public ResponseEntity<Page<CategoriaDTO>> findPage(@RequestParam(value = "page", defaultValue = "0") Integer page,
+			@RequestParam(value = "linesPage", defaultValue = "24") Integer linesPage,
+			@RequestParam(value = "ordeBy", defaultValue = "nome") String ordeBy,
+			@RequestParam(value = "direction", defaultValue = "ASC") String direction) {
+		Page<Categoria> list = service.findPage(page, linesPage, ordeBy, direction);
+		Page<CategoriaDTO> listDto = list.map(obj -> new CategoriaDTO(obj));
+		return ResponseEntity.ok().body(listDto);
+
 	}
->>>>>>> e5fc68fcdc5c48b567b705008fdd1138107d0508
+
 }

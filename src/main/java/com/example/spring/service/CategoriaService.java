@@ -5,6 +5,9 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.example.spring.domain.Categoria;
@@ -20,26 +23,18 @@ public class CategoriaService {
 	@Autowired
 	private CategoriaRepository repo;
 
-<<<<<<< HEAD
 	public Categoria find(Integer id) throws ObjectNotFoundException {
-=======
-	public Categoria buscar(Integer id) throws ObjectNotFoundException {
->>>>>>> e5fc68fcdc5c48b567b705008fdd1138107d0508
+
 		Optional<Categoria> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto nao encontrado! Id: " + id + ", Tipo: " + Categoria.class.getName()));
 
 	}
-<<<<<<< HEAD
 
-=======
-	
->>>>>>> e5fc68fcdc5c48b567b705008fdd1138107d0508
 	public Categoria insert(Categoria obj) {
 		obj.setId(null);
 		return repo.save(obj);
 	}
-<<<<<<< HEAD
 
 	public Categoria update(Categoria obj) throws ObjectNotFoundException {
 		find(obj.getId());
@@ -59,12 +54,15 @@ public class CategoriaService {
 	public List<Categoria> findAll() {
 		return repo.findAll();
 	}
-	
+
 	public Categoria fromDTO(CategoriaDTO objDto) {
 		return new Categoria(objDto.getId(), objDto.getNome());
-		
+
+	}
+	
+	public Page<Categoria> findPage(Integer page, Integer linesPage, String ordeBy, String direction){
+		PageRequest pageRequest = new PageRequest(page, linesPage,Direction.valueOf(direction), ordeBy);
+		return repo.findAll(pageRequest);
 	}
 
-=======
->>>>>>> e5fc68fcdc5c48b567b705008fdd1138107d0508
 }

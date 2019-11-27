@@ -9,3 +9,5 @@ import com.example.spring.domain.Cliente;
 public interface ClienteRepository extends JpaRepository<Cliente, Integer>{
 
 }
+
+//Operador operador = repository.findByCodigo(AuthenticationUtils.getOperadorLogado());
