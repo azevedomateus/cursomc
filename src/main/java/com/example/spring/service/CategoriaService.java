@@ -37,8 +37,9 @@ public class CategoriaService {
 	}
 
 	public Categoria update(Categoria obj) throws ObjectNotFoundException {
-		find(obj.getId());
-		return repo.save(obj);
+		Categoria newobj = find(obj.getId());
+		updateData(newobj, obj);
+		return repo.save(newobj);
 	}
 
 	public void delete(Integer id) throws ObjectNotFoundException {
@@ -58,14 +59,16 @@ public class CategoriaService {
 	public Categoria fromDTO(CategoriaDTO objDto) {
 		return new Categoria(objDto.getId(), objDto.getNome());
 
-<<<<<<< HEAD
+	}
+
+	public Page<Categoria> findPage(Integer page, Integer linesPage, String ordeBy, String direction) {
+		PageRequest pageRequest = new PageRequest(page, linesPage, Direction.valueOf(direction), ordeBy);
+		return repo.findAll(pageRequest);
+
 	}
 	
-	public Page<Categoria> findPage(Integer page, Integer linesPage, String ordeBy, String direction){
-		PageRequest pageRequest = new PageRequest(page, linesPage,Direction.valueOf(direction), ordeBy);
-		return repo.findAll(pageRequest);
-=======
->>>>>>> 6a765844bd1065876367a61b72132a9fafa53ff9
+	private void updateData (Categoria newObj, Categoria obj) {
+		newObj.setNome(obj.getNome());
 	}
 
 }

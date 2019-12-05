@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,7 +25,8 @@ public class Cliente implements Serializable{
 	private String nome;
 	private String email;
 	private String cpfCnpj;
-	private Integer tipoCliente;
+	@Enumerated
+	private TipoCliente tipoCliente;
 	
 	@OneToMany(mappedBy = "cliente")
 	List<Endereco> enderecos = new ArrayList<Endereco>();
@@ -44,7 +46,7 @@ public class Cliente implements Serializable{
 		this.nome = nome;
 		this.email = email;
 		this.cpfCnpj = cpfCnpj;
-		this.tipoCliente = tipoCliente.getCod();
+		this.tipoCliente = tipoCliente;
 	}
 
 	public Integer getId() {
@@ -81,11 +83,11 @@ public class Cliente implements Serializable{
 	
 
 	public TipoCliente getTipoCliente() {
-		return TipoCliente.toEnum(tipoCliente);
+		return tipoCliente;
 	}
 
 	public void setTipoCliente(TipoCliente tipoCliente) {
-		this.tipoCliente = tipoCliente.getCod();
+		this.tipoCliente = tipoCliente;
 	}
 
 	public List<Endereco> getEnderecos() {
